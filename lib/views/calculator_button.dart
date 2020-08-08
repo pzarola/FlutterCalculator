@@ -20,6 +20,18 @@ class CalculatorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double _buttonHeight, _buttonWidth, _fontSize, _buttonPadding;
+    if (MediaQuery.of(context).orientation == Orientation.portrait) {
+      _buttonHeight = deviceHeight(context) / 12;
+      _buttonWidth = containerWidth(context) / 4;
+      _fontSize = containerWidth(context) * .08;
+      _buttonPadding = 2;
+    } else {
+      _buttonHeight = deviceHeight(context) / 9;
+      _buttonWidth = containerWidth(context) / 6;
+      _fontSize = deviceHeight(context) * .05;
+      _buttonPadding = 2;
+    }
     //todo: Better error handling? (assert on 15)
     assert((icon != null) ^ (text != null));
     IconData _icon = icon;
@@ -33,7 +45,7 @@ class CalculatorButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: containerWidth(context) * .08,
+            fontSize: _fontSize,
             color: snow,
           ),
         ),
@@ -43,7 +55,7 @@ class CalculatorButton extends StatelessWidget {
         splashColor: splashColor,
         icon: new Icon(
           _icon,
-          size: containerWidth(context) * .08,
+          size: _fontSize,
           color: snow,
         ),
         label: new Text(""),
@@ -52,10 +64,10 @@ class CalculatorButton extends StatelessWidget {
       );
     }
     return SizedBox(
-        height: deviceHeight(context) / 12,
-        width: containerWidth(context) / 4,
+        height: _buttonHeight,
+        width: _buttonWidth,
         child: Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: EdgeInsets.all(_buttonPadding),
           child: _button,
         ));
   }

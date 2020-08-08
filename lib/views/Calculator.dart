@@ -47,8 +47,17 @@ class _CalculatorState extends State<Calculator> {
 
   @override
   Widget build(BuildContext context) {
-    double bottomPadding = MediaQuery.of(context).size.height / 25;
-    double leftAndRightPadding = MediaQuery.of(context).size.width / 25;
+    double bottomPadding;
+    double leftAndRightPadding;
+
+    if (MediaQuery.of(context).orientation == Orientation.portrait) {
+      bottomPadding = MediaQuery.of(context).size.height / 25;
+      leftAndRightPadding = MediaQuery.of(context).size.width / 25;
+    } else {
+      bottomPadding = MediaQuery.of(context).size.height / 10;
+      leftAndRightPadding = MediaQuery.of(context).size.width / 5;
+    }
+
     Color numberButtonColor = raisnBlack.shade300;
 
     bool isNumeric(String s) {
