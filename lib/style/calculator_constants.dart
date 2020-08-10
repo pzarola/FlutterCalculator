@@ -1,1 +1,1 @@
-const double calclulatorPadding = 2;
+double buttonPadding = 2;

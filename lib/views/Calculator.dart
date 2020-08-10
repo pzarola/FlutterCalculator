@@ -1,10 +1,13 @@
 import 'package:calculator/style/Colors.dart';
 import 'package:calculator/style/calculator_constants.dart';
 import 'package:calculator/views/calculator_button.dart';
+import 'package:calculator/views/calculator_button_landscape.dart';
 import 'package:calculator/views/calculator_text.dart';
 import 'package:flutter/material.dart';
 import 'calculator_display.dart';
 import 'package:calculator/util/helper_methods.dart';
+
+import 'calculator_display.dart';
 
 // TODO: Fix on rotate....
 // TODO: Pick a symbol for top right
@@ -47,17 +50,6 @@ class _CalculatorState extends State<Calculator> {
 
   @override
   Widget build(BuildContext context) {
-    double bottomPadding;
-    double leftAndRightPadding;
-
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      bottomPadding = MediaQuery.of(context).size.height / 25;
-      leftAndRightPadding = MediaQuery.of(context).size.width / 25;
-    } else {
-      bottomPadding = MediaQuery.of(context).size.height / 10;
-      leftAndRightPadding = MediaQuery.of(context).size.width / 5;
-    }
-
     Color numberButtonColor = raisnBlack.shade300;
 
     bool isNumeric(String s) {
@@ -150,24 +142,19 @@ class _CalculatorState extends State<Calculator> {
         title: Text("Calculator"),
       ),
       body: new Container(
-          child: Padding(
-        padding: EdgeInsets.fromLTRB(
-            leftAndRightPadding, 0, leftAndRightPadding, bottomPadding),
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          child:  
+        new Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             new Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(calclulatorPadding),
-                  child: CalculatorDisplay(
-                    output: output,
-                  ),
+                CalculatorDisplay(
+                  output: output
                 ),
               ],
             ),
             new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CalculatorButton(
                   text: "C",
@@ -192,7 +179,6 @@ class _CalculatorState extends State<Calculator> {
               ],
             ),
             new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CalculatorButton(
                   text: "7",
@@ -225,7 +211,6 @@ class _CalculatorState extends State<Calculator> {
               ],
             ),
             new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CalculatorButton(
                   text: "4",
@@ -258,7 +243,6 @@ class _CalculatorState extends State<Calculator> {
               ],
             ),
             new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CalculatorButton(
                   text: "1",
@@ -291,7 +275,6 @@ class _CalculatorState extends State<Calculator> {
               ],
             ),
             new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CalculatorButton(
                   text: "0",
@@ -314,11 +297,22 @@ class _CalculatorState extends State<Calculator> {
                     text: "=",
                     buttonColor: polishedPine.shade900,
                     onPressed: _calculate),
+//                if (MediaQuery.of(context).orientation == Orientation.landscape)
+                 CalculatorButtonLandscape(
+                     text: "=",
+                     buttonColor: polishedPine.shade900,
+                     onPressed: _calculate),
+//                if (MediaQuery.of(context).orientation == Orientation.landscape)
+                                     CalculatorButtonLandscape(
+                     text: "=",
+                     buttonColor: polishedPine.shade900,
+                     onPressed: _calculate),                    
               ],
             ),
+            
           ],
         ),
-      )),
+      ),
     );
   }
 }

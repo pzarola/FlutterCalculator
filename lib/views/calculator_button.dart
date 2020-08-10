@@ -1,7 +1,9 @@
 import 'package:calculator/style/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:calculator/util/helper_methods.dart';
+import 'package:calculator/style/calculator_constants.dart';
 
+import '../style/calculator_constants.dart';
 class CalculatorButton extends StatelessWidget {
   final String text;
   final Color buttonColor;
@@ -20,17 +22,14 @@ class CalculatorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _buttonHeight, _buttonWidth, _fontSize, _buttonPadding;
+    double _buttonHeight, _buttonWidth, _fontSize;
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      _buttonHeight = deviceHeight(context) / 12;
-      _buttonWidth = containerWidth(context) / 4;
-      _fontSize = containerWidth(context) * .08;
-      _buttonPadding = 2;
+      _buttonHeight = deviceHeight(context) / 8;
+      _buttonWidth = ( deviceWidth(context) - ( buttonPadding * 8) ) / 4;
+      _fontSize = deviceWidth(context) * .08;
     } else {
       _buttonHeight = deviceHeight(context) / 9;
-      _buttonWidth = containerWidth(context) / 6;
       _fontSize = deviceHeight(context) * .05;
-      _buttonPadding = 2;
     }
     //todo: Better error handling? (assert on 15)
     assert((icon != null) ^ (text != null));
@@ -63,12 +62,13 @@ class CalculatorButton extends StatelessWidget {
         onPressed: onPressed,
       );
     }
-    return SizedBox(
-        height: _buttonHeight,
-        width: _buttonWidth,
-        child: Padding(
-          padding: EdgeInsets.all(_buttonPadding),
+    return Padding(
+      padding: EdgeInsets.all(buttonPadding),
+      child: SizedBox(
+          height: _buttonHeight,
+          width: _buttonWidth,
           child: _button,
-        ));
+          ),
+    );
   }
 }

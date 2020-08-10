@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:calculator/util/helper_methods.dart';
 import 'package:calculator/style/Colors.dart';
+import '../style/calculator_constants.dart';
+import '../util/helper_methods.dart';
 import 'calculator_text.dart';
 
 class CalculatorDisplay extends StatefulWidget {
@@ -14,33 +16,29 @@ class CalculatorDisplay extends StatefulWidget {
 class _CalculatorDisplayState extends State<CalculatorDisplay> {
   @override
   Widget build(BuildContext context) {
-    double _displayWidth, _displayHeight, _displayPaddingFactor;
+    double _displayWidth, _displayHeight;
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      _displayHeight = deviceHeight(context) / 8;
-      _displayWidth = (MediaQuery.of(context).size.width -
-          4 -
-          ((MediaQuery.of(context).size.width / 25) * 2));
-      _displayPaddingFactor = 25;
+      _displayHeight = deviceHeight(context) / 4.8;
+      _displayWidth = deviceWidth(context) - 4;
     } else {
-      _displayHeight = deviceHeight(context) / 12;
-      _displayWidth = containerWidth(context);
-      _displayPaddingFactor = 0;
+      _displayHeight = deviceHeight(context) / 8;
+      _displayWidth = deviceWidth(context) - 25;
     }
 
-    return Container(
-      height: _displayHeight,
-      width: _displayWidth,
-      color: snow,
-      child: Padding(
-        padding: EdgeInsets.all(
-            MediaQuery.of(context).size.width / _displayPaddingFactor),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CalculatorText(widget.output),
-          ],
-        ),
+    return Padding(
+      padding: EdgeInsets.all(buttonPadding),
+      child: Container(
+        height: _displayHeight,
+        width: _displayWidth,
+        color: snow,
+          child: 
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CalculatorText(widget.output),
+            ],
+          ),
       ),
     );
   }
