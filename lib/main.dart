@@ -1,5 +1,6 @@
 import 'package:calculator/style/Colors.dart';
 import 'package:calculator/views/Calculator.dart';
+import 'package:calculator/views/calculator_landscape.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,3 +32,11 @@ class MyApp extends StatelessWidget {
         home: Calculator());
   }
 }
+
+// Widget calculatorApp(BuildContext context) {
+//   if (MediaQuery.of(context).orientation == Orientation.landscape) {
+//     return Calculator();
+//   } else {
+//     return CalculatorLandscape();
+//   }
+// }

@@ -24,7 +24,11 @@ class CalculatorButtonLandscape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (MediaQuery.of(context).orientation == Orientation.landscape)
-      return CalculatorButton(text: this.text, buttonColor: this.buttonColor, splashColor: this.splashColor, icon: this.icon, onPressed: this.onPressed,);  
+      return CalculatorButton(text: this.text, 
+      buttonColor: this.buttonColor, 
+      splashColor: this.splashColor, 
+      icon: this.icon, 
+      onPressed: this.onPressed,);  
     else {
       return Container(height: 0, width: 0);
     }
